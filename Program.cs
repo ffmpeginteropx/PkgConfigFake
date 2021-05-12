@@ -15,6 +15,7 @@ namespace PkgConfigFake
             {
                 { "libxml-2.0", "-llibxml2 -lz" },
                 { "x265", "-lx265" },
+                { "dav1d", "-llibdav1d" },
             };
 
             if (args.Length == 1 && args[0] == "--version")
@@ -24,7 +25,7 @@ namespace PkgConfigFake
             }
             else if (args.Length > 1 && args[0] == "--exists")
             {
-                var lib = args.Last();
+                var lib = GetLibName(args);
                 if (libs.ContainsKey(lib))
                 {
                     Console.WriteLine($"{lib} is installed.");
@@ -33,7 +34,7 @@ namespace PkgConfigFake
             }
             else if (args.Length > 1 && args[0] == "--libs")
             {
-                var lib = args.Last();
+                var lib = GetLibName(args);
                 if (libs.TryGetValue(lib, out string parameters))
                 {
                     Console.WriteLine(parameters);
@@ -41,6 +42,18 @@ namespace PkgConfigFake
                 }
             }
             return result;
+        }
+
+        static string GetLibName(string[] args)
+        {
+            foreach (var arg in args)
+            {
+                if (!arg.StartsWith("--"))
+                {
+                    return arg;
+                }
+            }
+            return "";
         }
     }
 }

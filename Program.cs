@@ -16,6 +16,7 @@ namespace PkgConfigFake
                 { "libxml-2.0", "-llibxml2 -lz" },
                 { "x265", "-lx265" },
                 { "dav1d", "-llibdav1d" },
+                { "openssl", "-lssl" },
             };
 
             if (args.Length == 1 && args[0] == "--version")

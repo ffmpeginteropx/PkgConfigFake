@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +14,14 @@ namespace PkgConfigFake
             var libs = new Dictionary<string,string>()
             {
                 { "libxml-2.0", "-llibxml2 -lz" },
+                { "x264", "-llibx264" },
                 { "x265", "-lx265" },
                 { "dav1d", "-llibdav1d" },
-                { "openssl", "-lssl" },
+                { "openssl", "-lssl -lcrypto" },
+                { "libass", "-lass" },
+                { "freetype2", "-lfreetype" },
+                { "fribidi", "-lfribidi" },
+                { "harfbuzz", "-lharfbuzz -lfreetype" },
             };
 
             if (args.Length == 1 && args[0] == "--version")
